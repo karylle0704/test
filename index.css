@@ -1,0 +1,514 @@
+:root {
+    color-scheme: light;
+    --ink: #10233f;
+    --ink-muted: #30445d;
+    --rule: #68788a;
+    --paper: #ffffff;
+    --canvas: #e9eef4;
+    --button: #173b67;
+    --button-hover: #102e53;
+    --button-secondary: #ffffff;
+    --button-secondary-border: #b9c7d5;
+    --focus: #1870c9;
+    --font-document: Arial, Helvetica, sans-serif;
+    --font-interface: Inter, "Segoe UI", Arial, sans-serif;
+    --rule-width: 1px;
+    --sheet-width: 8.27in;
+    --sheet-height: 11.69in;
+    --screen-shadow: 0 16px 44px rgb(26 42 64 / 12%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    background: var(--canvas);
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--canvas);
+    font-family: var(--font-interface);
+}
+
+button {
+    font: inherit;
+}
+
+.app-shell {
+    width: min(100%, 1120px);
+    margin-inline: auto;
+    padding: 32px 24px 56px;
+}
+
+.action-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 0 auto 28px;
+    text-align: center;
+}
+
+.action-bar__eyebrow,
+.action-bar__note {
+    margin: 0;
+}
+
+.action-bar__eyebrow {
+    color: var(--ink-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.action-bar__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.print-button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    border: 1px solid var(--button);
+    border-radius: 6px;
+    padding: 0 18px;
+    color: var(--paper);
+    background: var(--button);
+    box-shadow: 0 2px 5px rgb(16 35 63 / 12%);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 650;
+    transition: background-color 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.print-button:hover {
+    border-color: var(--button-hover);
+    background: var(--button-hover);
+    transform: translateY(-1px);
+}
+
+.print-button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}
+
+.print-button--secondary {
+    border-color: var(--button-secondary-border);
+    color: var(--ink);
+    background: var(--button-secondary);
+}
+
+.print-button--secondary:hover {
+    border-color: var(--button);
+    background: #f4f7fa;
+}
+
+.print-button__icon {
+    display: inline-grid;
+    width: 17px;
+    height: 17px;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 13px;
+    line-height: 1;
+}
+
+.action-bar__note {
+    color: var(--ink-muted);
+    font-size: 12px;
+}
+
+.sheet-stage {
+    display: grid;
+    justify-items: center;
+    gap: 32px;
+    overflow-x: auto;
+    padding: 0 0 10px;
+}
+
+.register {
+    position: relative;
+    container-type: inline-size;
+    width: var(--sheet-width);
+    min-height: var(--sheet-height);
+    flex: 0 0 auto;
+    padding: 0.34in 0.18in 0.3in;
+    color: var(--ink);
+    background: var(--paper);
+    box-shadow: var(--screen-shadow);
+    font-family: var(--font-document);
+    font-size: 8px;
+    line-height: 1.18;
+}
+
+.document-title,
+.document-subtitle,
+.document-period,
+.reference-block p,
+.signature-label,
+.signature-name,
+.signature-role,
+.certification-copy,
+.approval-copy {
+    margin: 0;
+}
+
+.permanent-header {
+    display: grid;
+    min-height: 0.72in;
+    grid-template-columns: 1fr 3.35fr 1fr;
+    align-items: start;
+    gap: 8px;
+}
+
+.crest-crop {
+    width: 8.2cqw;
+    height: 8.2cqw;
+    justify-self: center;
+    margin-top: 2px;
+    background-image: url("city-crest-source.png");
+    background-repeat: no-repeat;
+    background-position: -12.35cqw -6.55cqw;
+    background-size: 100cqw auto;
+}
+
+.permanent-header__title {
+    padding-top: 1px;
+    text-align: center;
+}
+
+.document-title {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.22;
+}
+
+.document-subtitle {
+    font-size: 10px;
+    line-height: 1.22;
+}
+
+.document-period {
+    margin-top: 6px;
+    font-size: 9px;
+}
+
+.reference-block {
+    padding-top: 2px;
+    text-align: left;
+    font-size: 7px;
+    line-height: 1.28;
+    white-space: nowrap;
+}
+
+.header-rule {
+    height: 1px;
+    margin: 5px 0 9px;
+    background: var(--rule);
+}
+
+.table-scroll {
+    width: 100%;
+}
+
+.payroll-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: var(--rule-width) solid var(--rule);
+    table-layout: fixed;
+    color: var(--ink);
+    font-family: var(--font-document);
+    font-size: 7px;
+    line-height: 1.1;
+}
+
+.payroll-table th,
+.payroll-table td {
+    border: var(--rule-width) solid var(--rule);
+    vertical-align: middle;
+}
+
+.payroll-table th {
+    height: 0.25in;
+    padding: 3px 4px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.payroll-table td {
+    height: 0.22in;
+    padding: 2px 5px;
+    white-space: nowrap;
+}
+
+.permanent-col-number { width: 6%; }
+.permanent-col-name { width: 25%; }
+.permanent-col-position { width: 23%; }
+.permanent-col-office { width: 34%; }
+.permanent-col-amount { width: 12%; }
+
+.permanent-table tbody td:nth-child(2),
+.permanent-table tbody td:nth-child(3),
+.permanent-table tbody td:nth-child(4) {
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.number-cell {
+    text-align: center;
+}
+
+.money-cell {
+    text-align: right;
+}
+
+.permanent-table tfoot td {
+    height: 0.3in;
+    padding: 4px 7px;
+    font-weight: 700;
+}
+
+.table-total-label {
+    text-align: right;
+}
+
+.table-total-amount {
+    white-space: nowrap;
+}
+
+.signatures {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 0.4in;
+}
+
+.signatures--three {
+    margin-top: 0.43in;
+}
+
+.signature-block {
+    min-width: 0;
+}
+
+.signature-label {
+    min-height: 0.18in;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.signature-label--sentence {
+    text-transform: none;
+}
+
+.signature-rule {
+    height: 0;
+    margin: 0.19in 0 5px;
+    border-top: var(--rule-width) solid var(--rule);
+}
+
+.signature-name {
+    font-size: 8px;
+    line-height: 1.2;
+}
+
+.signature-role {
+    margin-top: 2px;
+    font-size: 8px;
+    font-style: italic;
+    line-height: 1.2;
+}
+
+.jo-header {
+    position: relative;
+    min-height: 1.5in;
+    padding-top: 0.02in;
+    text-align: center;
+}
+
+.jo-header__title {
+    width: 82%;
+    margin-inline: auto;
+}
+
+.jo-header .reference-block {
+    position: absolute;
+    top: 0.3in;
+    right: 0;
+    text-align: left;
+}
+
+.jo-header .document-title,
+.jo-header .document-subtitle {
+    font-size: 10px;
+}
+
+.jo-header .jo-title {
+    margin-top: 2px;
+    font-size: 11px;
+}
+
+.jo-header .document-period {
+    margin-top: 5px;
+    font-size: 9px;
+}
+
+.jo-table {
+    font-size: 6.5px;
+}
+
+.jo-col-number { width: 5.5%; }
+.jo-col-name { width: 19%; }
+.jo-col-days { width: 7%; }
+.jo-col-rate { width: 9%; }
+.jo-col-overtime { width: 9%; }
+.jo-col-philhealth { width: 9%; }
+.jo-col-pagibig { width: 9%; }
+.jo-col-withheld { width: 9%; }
+.jo-col-amount { width: 9%; }
+.jo-col-signature { width: 14.5%; }
+
+.jo-table th {
+    height: 0.43in;
+    padding: 3px 2px;
+    white-space: normal;
+}
+
+.jo-table td {
+    height: 0.38in;
+    padding: 3px 2px;
+}
+
+.jo-table tbody td:nth-child(2) {
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.jo-table tfoot td {
+    height: 0.4in;
+    padding: 4px 2px;
+    font-weight: 700;
+}
+
+.jo-signatures {
+    margin-top: 0.42in;
+}
+
+.jo-signatures .signature-rule {
+    margin-top: 0.28in;
+}
+
+.signature-block--certified .signature-rule {
+    margin-top: 0.28in;
+}
+
+.certification-copy,
+.approval-copy {
+    margin-top: 0.11in;
+    font-size: 8px;
+    line-height: 1.35;
+}
+
+.approval-signatures {
+    margin-top: 0.56in;
+}
+
+.approval-signatures .signature-rule {
+    margin-top: 0.28in;
+}
+
+@media (max-width: 880px) {
+    .app-shell {
+        padding-inline: 16px;
+    }
+
+    .sheet-stage {
+        justify-items: start;
+    }
+}
+
+@media (max-width: 560px) {
+    .app-shell {
+        padding: 24px 12px 40px;
+    }
+
+    .action-bar__buttons {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .print-button {
+        width: 100%;
+    }
+}
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+@media print {
+    html,
+    body {
+        width: var(--sheet-width);
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .app-shell,
+    .sheet-stage {
+        display: block;
+        width: var(--sheet-width);
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .action-bar {
+        display: none !important;
+    }
+
+    .register {
+        display: none !important;
+        width: var(--sheet-width);
+        min-height: var(--sheet-height);
+        margin: 0;
+        padding: 0.34in 0.18in 0.3in;
+        box-shadow: none;
+        break-after: auto;
+        page-break-after: auto;
+    }
+
+    body[data-printing="permanent-register"] #permanent-register,
+    body[data-printing="jo-register"] #jo-register {
+        display: block !important;
+    }
+
+    body:not([data-printing]) #permanent-register {
+        display: block !important;
+    }
+
+    .table-scroll {
+        overflow: visible;
+    }
+
+    .payroll-table tr {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
